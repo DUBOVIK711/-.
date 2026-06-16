@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор — ночное небо</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 40%, #2d1b4e 100%);
+      overflow: hidden;
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Moon with cat */
+    .moon-scene {
+      position: fixed;
+      top: 30px;
+      right: 60px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .moon {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 35% 35%, #fffde7, #f5e6a3 40%, #d4c48a 100%);
+      border-radius: 50%;
+      box-shadow:
+        0 0 40px rgba(255, 253, 200, 0.5),
+        0 0 80px rgba(255, 253, 200, 0.2),
+        inset -8px -8px 20px rgba(180, 160, 100, 0.3);
+      position: relative;
+    }
+
+    .moon-crater {
+      position: absolute;
+      background: rgba(180, 160, 100, 0.25);
+      border-radius: 50%;
+    }
+
+    .moon-crater:nth-child(1) { width: 18px; height: 18px; top: 25px; left: 20px; }
+    .moon-crater:nth-child(2) { width: 12px; height: 12px; top: 55px; left: 45px; }
+    .moon-crater:nth-child(3) { width: 10px; height: 10px; top: 35px; left: 70px; }
+
+    /* Cat on moon */
+    .cat {
+      position: absolute;
+      bottom: 8px;
+      left: 20px;
+      width: 70px;
+      height: 50px;
+    }
+
+    .cat-body {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      width: 45px;
+      height: 22px;
+      background: #4a4a5a;
+      border-radius: 50% 50% 40% 40%;
+    }
+
+    .cat-head {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      width: 28px;
+      height: 26px;
+      background: #4a4a5a;
+      border-radius: 50%;
+    }
+
+    .cat-ear {
+      position: absolute;
+      width: 10px;
+      height: 12px;
+      background: #4a4a5a;
+      top: -6px;
+    }
+
+    .cat-ear.left {
+      left: 2px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .cat-ear.right {
+      right: 2px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .cat-ear-inner {
+      position: absolute;
+      width: 5px;
+      height: 6px;
+      background: #7a6a7a;
+      top: 4px;
+      left: 2.5px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .cat-eye {
+      position: absolute;
+      width: 5px;
+      height: 6px;
+      background: #ffe066;
+      border-radius: 50%;
+      top: 10px;
+    }
+
+    .cat-eye.left { left: 6px; }
+    .cat-eye.right { right: 6px; }
+
+    .cat-nose {
+      position: absolute;
+      width: 4px;
+      height: 3px;
+      background: #c9a0a0;
+      border-radius: 50%;
+      bottom: 8px;
+      left: 12px;
+    }
+
+    .cat-tail {
+      position: absolute;
+      bottom: 8px;
+      right: -2px;
+      width: 30px;
+      height: 8px;
+      background: #4a4a5a;
+      border-radius: 50%;
+      transform: rotate(-20deg);
+      transform-origin: left center;
+    }
+
+    /* Calculator card */
+    .calculator {
+      position: relative;
+      z-index: 2;
+      background: rgba(20, 25, 50, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 32px;
+      width: 340px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(100, 120, 200, 0.1);
+    }
+
+    .calculator h1 {
+      color: #e8e8f0;
+      font-size: 1.4rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+
+    .calculator h1 span {
+      color: #a8b8e8;
+    }
+
+    .field-group {
+      margin-bottom: 16px;
+    }
+
+    .field-group label {
+      display: block;
+      color: #8899bb;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field-group input:focus {
+      border-color: rgba(150, 170, 230, 0.5);
+      box-shadow: 0 0 12px rgba(150, 170, 230, 0.15);
+    }
+
+    .field-group input::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      font-weight: 500;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-op {
+      background: linear-gradient(135deg, #4a5a9a, #3a4a8a);
+      color: #e8e8f0;
+      box-shadow: 0 4px 12px rgba(60, 80, 160, 0.3);
+    }
+
+    .btn-op:hover {
+      background: linear-gradient(135deg, #5a6aaa, #4a5a9a);
+      box-shadow: 0 4px 16px rgba(60, 80, 160, 0.5);
+    }
+
+    .btn-clear {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #6a4a5a, #5a3a4a);
+      color: #e8d0d8;
+      box-shadow: 0 4px 12px rgba(100, 60, 80, 0.3);
+    }
+
+    .btn-clear:hover {
+      background: linear-gradient(135deg, #7a5a6a, #6a4a5a);
+    }
+
+    .result-area {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-area .result-text {
+      color: #c8d8f8;
+      font-size: 1.3rem;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .result-area .result-text.error {
+      color: #f0a0a8;
+      font-size: 1rem;
+    }
+
+    .result-area .result-text.empty {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="moon-scene">
+    <div class="moon">
+      <div class="moon-crater"></div>
+      <div class="moon-crater"></div>
+      <div class="moon-crater"></div>
+      <div class="cat">
+        <div class="cat-tail"></div>
+        <div class="cat-body"></div>
+        <div class="cat-head">
+          <div class="cat-ear left"><div class="cat-ear-inner"></div></div>
+          <div class="cat-ear right"><div class="cat-ear-inner"></div></div>
+          <div class="cat-eye left"></div>
+          <div class="cat-eye right"></div>
+          <div class="cat-nose"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calculator">
+    <h1>Калькулятор <span>★</span></h1>
+
+    <div class="field-group">
+      <label for="numberA">Число A</label>
+      <input type="text" id="numberA" placeholder="Введите число">
+    </div>
+
+    <div class="field-group">
+      <label for="numberB">Число B</label>
+      <input type="text" id="numberB" placeholder="Введите число">
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-op" id="btnAdd">Сложить</button>
+      <button class="btn btn-op" id="btnSubtract">Вычесть</button>
+      <button class="btn btn-op" id="btnMultiply">Умножить</button>
+      <button class="btn btn-op" id="btnDivide">Разделить</button>
+      <button class="btn btn-clear" id="btnClear">Очистить</button>
+    </div>
+
+    <div class="result-area">
+      <div class="result-text empty" id="result">Результат</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var numberA = document.getElementById('numberA');
+      var numberB = document.getElementById('numberB');
+      var resultEl = document.getElementById('result');
+      var starsContainer = document.getElementById('stars');
+
+      // Generate stars
+      for (var i = 0; i < 120; i++) {
+        var star = document.createElement('div');
+        star.className = 'star';
+        var size = Math.random() * 2.5 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--duration', (Math.random() * 2 + 1.5) + 's');
+        star.style.animationDelay = Math.random() * 3 + 's';
+        starsContainer.appendChild(star);
+      }
+
+      function getNumbers() {
+        var a = numberA.value.trim();
+        var b = numberB.value.trim();
+
+        if (a === '' || b === '') {
+          return null;
+        }
+
+        var numA = Number(a);
+        var numB = Number(b);
+
+        if (isNaN(numA) || isNaN(numB)) {
+          return null;
+        }
+
+        return { a: numA, b: numB };
+      }
+
+      function showError() {
+        resultEl.textContent = 'Введите два числа';
+        resultEl.className = 'result-text error';
+      }
+
+      function showResult(value) {
+        resultEl.textContent = value;
+        resultEl.className = 'result-text';
+      }
+
+      function showEmpty() {
+        resultEl.textContent = 'Результат';
+        resultEl.className = 'result-text empty';
+      }
+
+      function calculate(operation) {
+        var nums = getNumbers();
+        if (!nums) {
+          showError();
+          return;
+        }
+
+        var a = nums.a;
+        var b = nums.b;
+        var res;
+
+        switch (operation) {
+          case 'add':
+            res = a + b;
+            break;
+          case 'subtract':
+            res = a - b;
+            break;
+          case 'multiply':
+            res = a * b;
+            break;
+          case 'divide':
+            if (b === 0) {
+              resultEl.textContent = 'Деление на ноль';
+              resultEl.className = 'result-text error';
+              return;
+            }
+            res = a / b;
+            break;
+        }
+
+        showResult(res);
+      }
+
+      document.getElementById('btnAdd').addEventListener('click', function () {
+        calculate('add');
+      });
+
+      document.getElementById('btnSubtract').addEventListener('click', function () {
+        calculate('subtract');
+      });
+
+      document.getElementById('btnMultiply').addEventListener('click', function () {
+        calculate('multiply');
+      });
+
+      document.getElementById('btnDivide').addEventListener('click', function () {
+        calculate('divide');
+      });
+
+      document.getElementById('btnClear').addEventListener('click', function () {
+        numberA.value = '';
+        numberB.value = '';
+        showEmpty();
+      });
+    })();
+  </script>
+</body>
+</html>
