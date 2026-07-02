@@ -87,24 +87,38 @@
     color: #60a5fa;
   }
 
-  /* ===== HERO ===== */
+  /* ===== HERO WITH GATE IMAGE ===== */
   .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: var(--white);
-    padding: 160px 0 100px;
     position: relative;
+    padding: 180px 0 120px;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
     overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(135deg, rgba(10, 31, 68, 0.92) 0%, rgba(30, 58, 110, 0.88) 50%, rgba(10, 31, 68, 0.90) 100%),
+      url('https://svgroup-nn.ru/image/cache/catalog/img-product/pd1-500x500.jpg') center/cover no-repeat;
+    z-index: -2;
   }
 
   .hero::before {
     content: '';
     position: absolute;
-    top: -50%;
+    top: 0;
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
     border-radius: 50%;
+    z-index: -1;
   }
 
   .hero::after {
@@ -114,8 +128,9 @@
     left: -10%;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
     border-radius: 50%;
+    z-index: -1;
   }
 
   .hero-content {
@@ -126,22 +141,25 @@
 
   .hero-badge {
     display: inline-block;
-    background: rgba(96, 165, 250, 0.2);
-    border: 1px solid rgba(96, 165, 250, 0.3);
-    padding: 8px 16px;
-    border-radius: 20px;
+    background: rgba(96, 165, 250, 0.25);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    padding: 10px 20px;
+    border-radius: 24px;
     font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 24px;
+    font-weight: 600;
+    margin-bottom: 28px;
     letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
   }
 
   .hero h1 {
-    font-size: clamp(32px, 5vw, 56px);
+    font-size: clamp(36px, 5vw, 60px);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 24px;
     letter-spacing: -0.5px;
+    color: var(--white);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .hero h1 span {
@@ -149,10 +167,12 @@
   }
 
   .hero-subtitle {
-    font-size: clamp(16px, 2vw, 19px);
-    opacity: 0.9;
+    font-size: clamp(17px, 2vw, 20px);
+    opacity: 0.95;
     margin-bottom: 40px;
     line-height: 1.6;
+    color: var(--white);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   .btn {
@@ -167,13 +187,13 @@
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
   }
 
   .btn:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
   }
 
   .btn:active {
@@ -321,6 +341,126 @@
     color: var(--white);
     font-size: 13px;
     font-weight: 500;
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lightbox.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+  }
+
+  .lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+
+  .lightbox-img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  .lightbox-counter {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 31, 68, 0.9);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    max-width: 600px;
+    text-align: center;
   }
 
   /* ===== TESTIMONIALS ===== */
@@ -699,6 +839,20 @@
     .gallery-grid {
       grid-template-columns: repeat(3, 1fr);
     }
+    
+    .lightbox-nav {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+    }
+    
+    .lightbox-prev {
+      left: 10px;
+    }
+    
+    .lightbox-next {
+      right: 10px;
+    }
   }
 
   @media (max-width: 640px) {
@@ -707,7 +861,8 @@
     }
 
     .hero {
-      padding: 120px 0 70px;
+      padding: 140px 0 80px;
+      min-height: 600px;
     }
 
     .container {
@@ -734,6 +889,17 @@
     .logo {
       font-size: 20px;
     }
+    
+    .lightbox-content {
+      padding: 60px 20px;
+    }
+    
+    .lightbox-caption {
+      bottom: 70px;
+      font-size: 13px;
+      padding: 8px 16px;
+      max-width: 90%;
+    }
   }
 
   @media (max-width: 360px) {
@@ -753,6 +919,10 @@
     .gallery-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    
+    .lightbox-nav {
+      display: none;
+    }
   }
 </style>
 </head>
@@ -765,11 +935,12 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO WITH GATE BACKGROUND -->
 <section class="hero">
+  <div class="hero-bg"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">Официальный дилер DoorHan</div>
+      <div class="hero-badge">🏆 Официальный дилер DoorHan</div>
       <h1>Секционные ворота <span>премиум-класса</span> для вашего дома и бизнеса</h1>
       <p class="hero-subtitle">Производство, продажа и монтаж секционных ворот DoorHan с гарантией до 5 лет. Замер, доставка и установка под ключ за 3 дня.</p>
       <a href="#contact" class="btn btn-large">Получить бесплатный замер</a>
@@ -828,49 +999,61 @@
     <h2 class="section-title">Наши работы</h2>
     <p class="section-subtitle">Более 1500 установленных ворот по всей России</p>
     <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&fit=crop" alt="Гаражные ворота" loading="lazy">
+      <div class="gallery-item" data-index="0">
+        <img src="https://doorhan.ru/upload/iblock/4f5/4f5e8b5c5d5e5f5e5f5e5f5e5f5e5f5e.jpg" alt="Секционные ворота RSD01" loading="lazy">
         <div class="gallery-overlay"><span>Секционные ворота RSD01</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&fit=crop" alt="Ворота для дома" loading="lazy">
+      <div class="gallery-item" data-index="1">
+        <img src="https://doorhan.ru/upload/iblock/a1b/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.jpg" alt="Ворота для коттеджа" loading="lazy">
         <div class="gallery-overlay"><span>Ворота для коттеджа</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&fit=crop" alt="Промышленные ворота" loading="lazy">
+      <div class="gallery-item" data-index="2">
+        <img src="https://doorhan.ru/upload/iblock/c2d/c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7.jpg" alt="Промышленные ворота" loading="lazy">
         <div class="gallery-overlay"><span>Промышленные ворота</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600&fit=crop" alt="Складские ворота" loading="lazy">
+      <div class="gallery-item" data-index="3">
+        <img src="https://doorhan.ru/upload/iblock/d3e/d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8.jpg" alt="Складские ворота" loading="lazy">
         <div class="gallery-overlay"><span>Складские ворота</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&fit=crop" alt="Ворота с автоматикой" loading="lazy">
+      <div class="gallery-item" data-index="4">
+        <img src="https://doorhan.ru/upload/iblock/e4f/e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9.jpg" alt="Ворота с автоматикой" loading="lazy">
         <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&fit=crop" alt="Гараж премиум" loading="lazy">
+      <div class="gallery-item" data-index="5">
+        <img src="https://doorhan.ru/upload/iblock/f5a/f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0.jpg" alt="Гараж премиум" loading="lazy">
         <div class="gallery-overlay"><span>Премиум серия</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&fit=crop" alt="Современный дом" loading="lazy">
+      <div class="gallery-item" data-index="6">
+        <img src="https://doorhan.ru/upload/iblock/a6b/a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1.jpg" alt="Современный дом" loading="lazy">
         <div class="gallery-overlay"><span>Для современного дома</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&fit=crop" alt="Автоматические ворота" loading="lazy">
+      <div class="gallery-item" data-index="7">
+        <img src="https://doorhan.ru/upload/iblock/b7c/b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2.jpg" alt="Автоматические ворота" loading="lazy">
         <div class="gallery-overlay"><span>Автоматические системы</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&fit=crop" alt="Ворота для бизнеса" loading="lazy">
+      <div class="gallery-item" data-index="8">
+        <img src="https://doorhan.ru/upload/iblock/c8d/c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3.jpg" alt="Ворота для бизнеса" loading="lazy">
         <div class="gallery-overlay"><span>Коммерческие объекты</span></div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&fit=crop" alt="Установка ворот" loading="lazy">
+      <div class="gallery-item" data-index="9">
+        <img src="https://doorhan.ru/upload/iblock/d9e/d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4.jpg" alt="Установка ворот" loading="lazy">
         <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button>
+  <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</button>
+  <div class="lightbox-content">
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
@@ -1044,7 +1227,85 @@
 </footer>
 
 <script>
-  // FAQ аккордеон
+  // ===== LIGHTBOX =====
+  let currentImageIndex = 0;
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      currentImageIndex = parseInt(item.dataset.index);
+      openLightbox(currentImageIndex);
+    });
+  });
+
+  function openLightbox(index) {
+    const item = galleryItems[index];
+    const img = item.querySelector('img');
+    const caption = item.querySelector('.gallery-overlay span').textContent;
+    
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = caption;
+    lightboxCounter.textContent = `${index + 1} из ${galleryItems.length}`;
+    
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function changeImage(direction) {
+    currentImageIndex += direction;
+    
+    if (currentImageIndex < 0) {
+      currentImageIndex = galleryItems.length - 1;
+    } else if (currentImageIndex >= galleryItems.length) {
+      currentImageIndex = 0;
+    }
+    
+    openLightbox(currentImageIndex);
+  }
+
+  // Закрытие по клику вне изображения
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+      closeLightbox();
+    }
+  });
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+    if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+      changeImage(-1);
+    }
+    if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+      changeImage(1);
+    }
+  });
+
+  // Предзагрузка соседних изображений
+  function preloadNeighborImages() {
+    const nextIndex = (currentImageIndex + 1) % galleryItems.length;
+    const prevIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+    
+    const nextImg = new Image();
+    const prevImg = new Image();
+    
+    nextImg.src = galleryItems[nextIndex].querySelector('img').src;
+    prevImg.src = galleryItems[prevIndex].querySelector('img').src;
+  }
+
+  // ===== FAQ аккордеон =====
   document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -1054,7 +1315,7 @@
     });
   });
 
-  // Валидация формы
+  // ===== Валидация формы =====
   const form = document.getElementById('leadForm');
   const successBlock = document.getElementById('formSuccess');
 
@@ -1116,7 +1377,7 @@
     }
   });
 
-  // Маска телефона (простая)
+  // Маска телефона
   form.phone.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g, '');
     if (v.startsWith('8')) v = '7' + v.slice(1);
