@@ -1,462 +1,1135 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Калькулятор — ночное небо</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DoorHan — Секционные ворота премиум-класса</title>
+<style>
+  :root {
+    --primary: #0a1f44;
+    --primary-light: #1e3a6e;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --white: #ffffff;
+    --gray: #f4f6fa;
+    --gray-dark: #64748b;
+    --text: #1a2332;
+    --border: #e2e8f0;
+    --shadow: 0 10px 40px rgba(10, 31, 68, 0.08);
+    --shadow-lg: 0 20px 60px rgba(10, 31, 68, 0.15);
+    --radius: 12px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 31, 68, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 16px 0;
+    transition: var(--transition);
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .logo span {
+    color: #60a5fa;
+  }
+
+  .header-phone {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: var(--transition);
+  }
+
+  .header-phone:hover {
+    color: #60a5fa;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: 160px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(96, 165, 250, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 span {
+    color: #60a5fa;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 2vw, 19px);
+    opacity: 0.9;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-large {
+    padding: 18px 42px;
+    font-size: 17px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 90px 0;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--gray-dark);
+    font-size: 17px;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== ADVANTAGES ===== */
+  .advantages {
+    background: var(--gray);
+  }
+
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .advantage-card {
+    background: var(--white);
+    padding: 32px 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border);
+  }
+
+  .advantage-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+
+  .advantage-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .advantage-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--white);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .advantage-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .advantage-card p {
+    color: var(--gray-dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ===== GALLERY ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 31, 68, 0.8) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-overlay span {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--gray);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .testimonial-stars {
+    color: #fbbf24;
+    font-size: 18px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .testimonial-name {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 15px;
+  }
+
+  .testimonial-role {
+    color: var(--gray-dark);
+    font-size: 13px;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  .faq-item:hover {
+    border-color: var(--accent);
+  }
+
+  .faq-question {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--primary);
+    user-select: none;
+  }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--accent);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon::before {
+    width: 14px;
+    height: 2px;
+    top: 11px;
+    left: 5px;
+  }
+
+  .faq-icon::after {
+    width: 2px;
+    height: 14px;
+    top: 5px;
+    left: 11px;
+  }
+
+  .faq-item.active .faq-icon::after {
+    transform: rotate(90deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 24px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 0 24px 20px;
+  }
+
+  /* ===== CONTACT FORM ===== */
+  .contact {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .contact .section-title {
+    color: var(--white);
+  }
+
+  .contact .section-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .form-label .required {
+    color: #ef4444;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--text);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-input.error {
+    border-color: #ef4444;
+  }
+
+  .form-error {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+  }
+
+  .form-error.show {
+    display: block;
+  }
+
+  .messenger-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .messenger-option {
+    position: relative;
+  }
+
+  .messenger-option input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .messenger-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .messenger-label:hover {
+    border-color: var(--accent);
+  }
+
+  .messenger-option input:checked + .messenger-label {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+  }
+
+  .form-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .form-success.show {
+    display: block;
+  }
+
+  .form-success-icon {
+    width: 70px;
+    height: 70px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 36px;
+    color: var(--white);
+  }
+
+  .form-success h3 {
+    color: var(--primary);
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .form-success p {
+    color: var(--gray-dark);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #061229;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 50px 0 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .footer-col p,
+  .footer-col a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.8;
+    display: block;
+    transition: var(--transition);
+  }
+
+  .footer-col a:hover {
+    color: #60a5fa;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    section {
+      padding: 60px 0;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 40%, #2d1b4e 100%);
-      overflow: hidden;
+    .hero {
+      padding: 120px 0 70px;
     }
 
-    /* Stars */
-    .stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
+    .container {
+      padding: 0 16px;
     }
 
-    .star {
-      position: absolute;
-      background: #fff;
-      border-radius: 50%;
-      animation: twinkle var(--duration) ease-in-out infinite alternate;
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
-    @keyframes twinkle {
-      0% { opacity: 0.3; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1.2); }
+    .form-wrapper {
+      padding: 28px 20px;
     }
 
-    /* Moon with cat */
-    .moon-scene {
-      position: fixed;
-      top: 30px;
-      right: 60px;
-      z-index: 1;
-      pointer-events: none;
+    .messenger-group {
+      grid-template-columns: 1fr;
     }
 
-    .moon {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle at 35% 35%, #fffde7, #f5e6a3 40%, #d4c48a 100%);
-      border-radius: 50%;
-      box-shadow:
-        0 0 40px rgba(255, 253, 200, 0.5),
-        0 0 80px rgba(255, 253, 200, 0.2),
-        inset -8px -8px 20px rgba(180, 160, 100, 0.3);
-      position: relative;
+    .header-phone {
+      font-size: 13px;
     }
 
-    .moon-crater {
-      position: absolute;
-      background: rgba(180, 160, 100, 0.25);
-      border-radius: 50%;
+    .logo {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero h1 {
+      font-size: 28px;
     }
 
-    .moon-crater:nth-child(1) { width: 18px; height: 18px; top: 25px; left: 20px; }
-    .moon-crater:nth-child(2) { width: 12px; height: 12px; top: 55px; left: 45px; }
-    .moon-crater:nth-child(3) { width: 10px; height: 10px; top: 35px; left: 70px; }
-
-    /* Cat on moon */
-    .cat {
-      position: absolute;
-      bottom: 8px;
-      left: 20px;
-      width: 70px;
-      height: 50px;
+    .btn-large {
+      padding: 16px 28px;
+      font-size: 15px;
     }
 
-    .cat-body {
-      position: absolute;
-      bottom: 0;
-      left: 10px;
-      width: 45px;
-      height: 22px;
-      background: #4a4a5a;
-      border-radius: 50% 50% 40% 40%;
+    .advantages-grid {
+      grid-template-columns: 1fr;
     }
 
-    .cat-head {
-      position: absolute;
-      bottom: 14px;
-      left: 0;
-      width: 28px;
-      height: 26px;
-      background: #4a4a5a;
-      border-radius: 50%;
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    .cat-ear {
-      position: absolute;
-      width: 10px;
-      height: 12px;
-      background: #4a4a5a;
-      top: -6px;
-    }
-
-    .cat-ear.left {
-      left: 2px;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    .cat-ear.right {
-      right: 2px;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    .cat-ear-inner {
-      position: absolute;
-      width: 5px;
-      height: 6px;
-      background: #7a6a7a;
-      top: 4px;
-      left: 2.5px;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    .cat-eye {
-      position: absolute;
-      width: 5px;
-      height: 6px;
-      background: #ffe066;
-      border-radius: 50%;
-      top: 10px;
-    }
-
-    .cat-eye.left { left: 6px; }
-    .cat-eye.right { right: 6px; }
-
-    .cat-nose {
-      position: absolute;
-      width: 4px;
-      height: 3px;
-      background: #c9a0a0;
-      border-radius: 50%;
-      bottom: 8px;
-      left: 12px;
-    }
-
-    .cat-tail {
-      position: absolute;
-      bottom: 8px;
-      right: -2px;
-      width: 30px;
-      height: 8px;
-      background: #4a4a5a;
-      border-radius: 50%;
-      transform: rotate(-20deg);
-      transform-origin: left center;
-    }
-
-    /* Calculator card */
-    .calculator {
-      position: relative;
-      z-index: 2;
-      background: rgba(20, 25, 50, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 32px;
-      width: 340px;
-      box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(100, 120, 200, 0.1);
-    }
-
-    .calculator h1 {
-      color: #e8e8f0;
-      font-size: 1.4rem;
-      font-weight: 300;
-      text-align: center;
-      margin-bottom: 24px;
-      letter-spacing: 2px;
-    }
-
-    .calculator h1 span {
-      color: #a8b8e8;
-    }
-
-    .field-group {
-      margin-bottom: 16px;
-    }
-
-    .field-group label {
-      display: block;
-      color: #8899bb;
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-    }
-
-    .field-group input {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      color: #fff;
-      font-size: 1.1rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .field-group input:focus {
-      border-color: rgba(150, 170, 230, 0.5);
-      box-shadow: 0 0 12px rgba(150, 170, 230, 0.15);
-    }
-
-    .field-group input::placeholder {
-      color: rgba(255, 255, 255, 0.25);
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .btn {
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-      font-weight: 500;
-    }
-
-    .btn:active {
-      transform: scale(0.96);
-    }
-
-    .btn-op {
-      background: linear-gradient(135deg, #4a5a9a, #3a4a8a);
-      color: #e8e8f0;
-      box-shadow: 0 4px 12px rgba(60, 80, 160, 0.3);
-    }
-
-    .btn-op:hover {
-      background: linear-gradient(135deg, #5a6aaa, #4a5a9a);
-      box-shadow: 0 4px 16px rgba(60, 80, 160, 0.5);
-    }
-
-    .btn-clear {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, #6a4a5a, #5a3a4a);
-      color: #e8d0d8;
-      box-shadow: 0 4px 12px rgba(100, 60, 80, 0.3);
-    }
-
-    .btn-clear:hover {
-      background: linear-gradient(135deg, #7a5a6a, #6a4a5a);
-    }
-
-    .result-area {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 16px;
-      min-height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .result-area .result-text {
-      color: #c8d8f8;
-      font-size: 1.3rem;
-      font-weight: 300;
-      text-align: center;
-    }
-
-    .result-area .result-text.error {
-      color: #f0a0a8;
-      font-size: 1rem;
-    }
-
-    .result-area .result-text.empty {
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 0.9rem;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <div class="stars" id="stars"></div>
+<header>
+  <div class="container header-inner">
+    <div class="logo">DOOR<span>HAN</span></div>
+    <a href="tel:+78001234567" class="header-phone">+7 (800) 123-45-67</a>
+  </div>
+</header>
 
-  <div class="moon-scene">
-    <div class="moon">
-      <div class="moon-crater"></div>
-      <div class="moon-crater"></div>
-      <div class="moon-crater"></div>
-      <div class="cat">
-        <div class="cat-tail"></div>
-        <div class="cat-body"></div>
-        <div class="cat-head">
-          <div class="cat-ear left"><div class="cat-ear-inner"></div></div>
-          <div class="cat-ear right"><div class="cat-ear-inner"></div></div>
-          <div class="cat-eye left"></div>
-          <div class="cat-eye right"></div>
-          <div class="cat-nose"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Официальный дилер DoorHan</div>
+      <h1>Секционные ворота <span>премиум-класса</span> для вашего дома и бизнеса</h1>
+      <p class="hero-subtitle">Производство, продажа и монтаж секционных ворот DoorHan с гарантией до 5 лет. Замер, доставка и установка под ключ за 3 дня.</p>
+      <a href="#contact" class="btn btn-large">Получить бесплатный замер</a>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="advantages">
+  <div class="container">
+    <h2 class="section-title">Почему выбирают нас</h2>
+    <p class="section-subtitle">5 причин доверить ворота именно нам</p>
+    <div class="advantages-grid">
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z"/></svg>
+        </div>
+        <h3>Гарантия 5 лет</h3>
+        <p>Официальная гарантия на все конструкции и монтажные работы</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Монтаж за 1 день</h3>
+        <p>Установка ворот занимает от 3 до 6 часов с уборкой мусора</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <h3>Любые размеры</h3>
+        <p>Изготовление ворот по индивидуальным размерам проёма</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Сертификаты</h3>
+        <p>Вся продукция сертифицирована и соответствует ГОСТ</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Консультация 24/7</h3>
+        <p>Бесплатная консультация и расчёт стоимости в любое время</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Наши работы</h2>
+    <p class="section-subtitle">Более 1500 установленных ворот по всей России</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&fit=crop" alt="Гаражные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Секционные ворота RSD01</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&fit=crop" alt="Ворота для дома" loading="lazy">
+        <div class="gallery-overlay"><span>Ворота для коттеджа</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&fit=crop" alt="Промышленные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Промышленные ворота</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600&fit=crop" alt="Складские ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Складские ворота</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&fit=crop" alt="Ворота с автоматикой" loading="lazy">
+        <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&fit=crop" alt="Гараж премиум" loading="lazy">
+        <div class="gallery-overlay"><span>Премиум серия</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&fit=crop" alt="Современный дом" loading="lazy">
+        <div class="gallery-overlay"><span>Для современного дома</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&fit=crop" alt="Автоматические ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Автоматические системы</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&fit=crop" alt="Ворота для бизнеса" loading="lazy">
+        <div class="gallery-overlay"><span>Коммерческие объекты</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&fit=crop" alt="Установка ворот" loading="lazy">
+        <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Отзывы клиентов</h2>
+    <p class="section-subtitle">Что говорят о нас те, кто уже установил ворота</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">«Установили ворота в гараж за один день. Качество отличное, работают бесшумно. Особенно понравилась автоматика — открывается с телефона.»</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">АК</div>
+          <div>
+            <div class="testimonial-name">Александр Козлов</div>
+            <div class="testimonial-role">Частный дом, Тюмень</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">«Заказывали промышленные ворота на склад. Замерщик приехал вовремя, всё рассчитал. Монтаж прошёл быстро, без нареканий. Рекомендую!»</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">МС</div>
+          <div>
+            <div class="testimonial-name">Марина Соколова</div>
+            <div class="testimonial-role">ООО «Логистик+»</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">«Второй раз обращаюсь — сначала ставили ворота в гараж, теперь в баню. Цены адекватные, мастера вежливые, мусор за собой убрали.»</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ДВ</div>
+          <div>
+            <div class="testimonial-name">Дмитрий Волков</div>
+            <div class="testimonial-role">Коттеджный посёлок</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="calculator">
-    <h1>Калькулятор <span>★</span></h1>
-
-    <div class="field-group">
-      <label for="numberA">Число A</label>
-      <input type="text" id="numberA" placeholder="Введите число">
-    </div>
-
-    <div class="field-group">
-      <label for="numberB">Число B</label>
-      <input type="text" id="numberB" placeholder="Введите число">
-    </div>
-
-    <div class="buttons">
-      <button class="btn btn-op" id="btnAdd">Сложить</button>
-      <button class="btn btn-op" id="btnSubtract">Вычесть</button>
-      <button class="btn btn-op" id="btnMultiply">Умножить</button>
-      <button class="btn btn-op" id="btnDivide">Разделить</button>
-      <button class="btn btn-clear" id="btnClear">Очистить</button>
-    </div>
-
-    <div class="result-area">
-      <div class="result-text empty" id="result">Результат</div>
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Частые вопросы</h2>
+    <p class="section-subtitle">Ответы на популярные вопросы о воротах DoorHan</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Сколько стоит установка секционных ворот?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">Стоимость зависит от размеров проёма, типа полотна и наличия автоматики. Базовая цена от 45 000 ₽ с монтажом. Точный расчёт делает замерщик бесплатно.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Сколько времени занимает монтаж?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">Стандартный монтаж занимает 3–6 часов. В день установки вы уже можете пользоваться воротами. После работы мастера убирают за собой весь мусор.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Какая гарантия на ворота?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">Мы даём гарантию 5 лет на полотно и конструкцию, 3 года на автоматику и 2 года на монтажные работы. Сервисное обслуживание доступно в течение всего срока эксплуатации.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Можно ли установить ворота зимой?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">Да, монтаж возможен круглый год при температуре до -15°C. Используем специальные морозостойкие уплотнители и смазку. Зимой даже выгоднее — действуют сезонные скидки.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Какие цвета и фактуры полотна доступны?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">Более 20 стандартных цветов RAL, включая белый, коричневый, антрацит и золотой дуб. Доступны фактуры: гладкая, микроволна, филёнка. Также возможно изготовление в любом цвете по каталогу RAL.</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <script>
-    (function () {
-      var numberA = document.getElementById('numberA');
-      var numberB = document.getElementById('numberB');
-      var resultEl = document.getElementById('result');
-      var starsContainer = document.getElementById('stars');
+<!-- CONTACT FORM -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Оставьте заявку</h2>
+    <p class="section-subtitle">Бесплатный замер и расчёт стоимости в течение 30 минут</p>
+    <div class="form-wrapper">
+      <form id="leadForm">
+        <div class="form-group">
+          <label class="form-label">Ваше имя <span class="required">*</span></label>
+          <input type="text" name="name" class="form-input" placeholder="Иван Иванов">
+          <div class="form-error" data-error="name">Введите ваше имя (минимум 2 символа)</div>
+        </div>
 
-      // Generate stars
-      for (var i = 0; i < 120; i++) {
-        var star = document.createElement('div');
-        star.className = 'star';
-        var size = Math.random() * 2.5 + 1;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--duration', (Math.random() * 2 + 1.5) + 's');
-        star.style.animationDelay = Math.random() * 3 + 's';
-        starsContainer.appendChild(star);
-      }
+        <div class="form-group">
+          <label class="form-label">Телефон <span class="required">*</span></label>
+          <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__">
+          <div class="form-error" data-error="phone">Введите корректный номер телефона</div>
+        </div>
 
-      function getNumbers() {
-        var a = numberA.value.trim();
-        var b = numberB.value.trim();
+        <div class="form-group">
+          <label class="form-label">Удобный мессенджер</label>
+          <div class="messenger-group">
+            <div class="messenger-option">
+              <input type="radio" name="messenger" id="msg-whatsapp" value="whatsapp">
+              <label for="msg-whatsapp" class="messenger-label">WhatsApp</label>
+            </div>
+            <div class="messenger-option">
+              <input type="radio" name="messenger" id="msg-telegram" value="telegram">
+              <label for="msg-telegram" class="messenger-label">Telegram</label>
+            </div>
+            <div class="messenger-option">
+              <input type="radio" name="messenger" id="msg-viber" value="viber">
+              <label for="msg-viber" class="messenger-label">Viber</label>
+            </div>
+          </div>
+        </div>
 
-        if (a === '' || b === '') {
-          return null;
-        }
+        <button type="submit" class="form-submit">Отправить заявку</button>
+      </form>
 
-        var numA = Number(a);
-        var numB = Number(b);
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <h3>Заявка отправлена!</h3>
+        <p>Мы свяжемся с вами в течение 30 минут</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        if (isNaN(numA) || isNaN(numB)) {
-          return null;
-        }
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>DOORHAN</h4>
+        <p>Официальный дилер секционных ворот DoorHan в Западной Сибири. Производство, продажа и монтаж с 2010 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+78001234567">+7 (800) 123-45-67</a>
+        <a href="mailto:info@doorhan.ru">info@doorhan.ru</a>
+        <p>г. Тюмень, ул. Промышленная, 12</p>
+      </div>
+      <div class="footer-col">
+        <h4>Режим работы</h4>
+        <p>Пн–Пт: 9:00 – 19:00</p>
+        <p>Сб: 10:00 – 17:00</p>
+        <p>Вс: выходной</p>
+      </div>
+      <div class="footer-col">
+        <h4>Услуги</h4>
+        <a href="#">Секционные ворота</a>
+        <a href="#">Промышленные ворота</a>
+        <a href="#">Автоматика</a>
+        <a href="#">Сервис и ремонт</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 DoorHan Западная Сибирь. Все права защищены.
+    </div>
+  </div>
+</footer>
 
-        return { a: numA, b: numB };
-      }
+<script>
+  // FAQ аккордеон
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
 
-      function showError() {
-        resultEl.textContent = 'Введите два числа';
-        resultEl.className = 'result-text error';
-      }
+  // Валидация формы
+  const form = document.getElementById('leadForm');
+  const successBlock = document.getElementById('formSuccess');
 
-      function showResult(value) {
-        resultEl.textContent = value;
-        resultEl.className = 'result-text';
-      }
+  function showError(name) {
+    const input = form.querySelector(`[name="${name}"]`);
+    const error = form.querySelector(`[data-error="${name}"]`);
+    if (input) input.classList.add('error');
+    if (error) error.classList.add('show');
+  }
 
-      function showEmpty() {
-        resultEl.textContent = 'Результат';
-        resultEl.className = 'result-text empty';
-      }
+  function clearError(name) {
+    const input = form.querySelector(`[name="${name}"]`);
+    const error = form.querySelector(`[data-error="${name}"]`);
+    if (input) input.classList.remove('error');
+    if (error) error.classList.remove('show');
+  }
 
-      function calculate(operation) {
-        var nums = getNumbers();
-        if (!nums) {
-          showError();
-          return;
-        }
+  function validatePhone(phone) {
+    const digits = phone.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 11;
+  }
 
-        var a = nums.a;
-        var b = nums.b;
-        var res;
+  // Живая валидация
+  form.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('input', () => {
+      clearError(input.name);
+    });
+  });
 
-        switch (operation) {
-          case 'add':
-            res = a + b;
-            break;
-          case 'subtract':
-            res = a - b;
-            break;
-          case 'multiply':
-            res = a * b;
-            break;
-          case 'divide':
-            if (b === 0) {
-              resultEl.textContent = 'Деление на ноль';
-              resultEl.className = 'result-text error';
-              return;
-            }
-            res = a / b;
-            break;
-        }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
 
-        showResult(res);
-      }
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
 
-      document.getElementById('btnAdd').addEventListener('click', function () {
-        calculate('add');
-      });
+    if (name.length < 2) {
+      showError('name');
+      valid = false;
+    } else {
+      clearError('name');
+    }
 
-      document.getElementById('btnSubtract').addEventListener('click', function () {
-        calculate('subtract');
-      });
+    if (!validatePhone(phone)) {
+      showError('phone');
+      valid = false;
+    } else {
+      clearError('phone');
+    }
 
-      document.getElementById('btnMultiply').addEventListener('click', function () {
-        calculate('multiply');
-      });
+    if (valid) {
+      form.style.display = 'none';
+      successBlock.classList.add('show');
+      setTimeout(() => {
+        form.reset();
+        form.style.display = 'block';
+        successBlock.classList.remove('show');
+      }, 5000);
+    }
+  });
 
-      document.getElementById('btnDivide').addEventListener('click', function () {
-        calculate('divide');
-      });
+  // Маска телефона (простая)
+  form.phone.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.startsWith('8')) v = '7' + v.slice(1);
+    if (v.startsWith('7')) {
+      let formatted = '+7';
+      if (v.length > 1) formatted += ' (' + v.slice(1, 4);
+      if (v.length > 4) formatted += ') ' + v.slice(4, 7);
+      if (v.length > 7) formatted += '-' + v.slice(7, 9);
+      if (v.length > 9) formatted += '-' + v.slice(9, 11);
+      e.target.value = formatted;
+    }
+  });
+</script>
 
-      document.getElementById('btnClear').addEventListener('click', function () {
-        numberA.value = '';
-        numberB.value = '';
-        showEmpty();
-      });
-    })();
-  </script>
 </body>
 </html>
