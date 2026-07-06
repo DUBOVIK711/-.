@@ -21,15 +21,8 @@
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -39,18 +32,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
   /* ===== HEADER ===== */
   header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     background: rgba(10, 31, 68, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -58,36 +45,19 @@
     transition: var(--transition);
   }
 
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; }
 
-  .logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: 1px;
-  }
-
-  .logo span {
-    color: #60a5fa;
-  }
+  .logo { font-size: 24px; font-weight: 800; color: var(--white); letter-spacing: 1px; }
+  .logo span { color: #60a5fa; }
 
   .header-phone {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
+    color: var(--white); text-decoration: none;
+    font-weight: 600; font-size: 15px;
     transition: var(--transition);
   }
+  .header-phone:hover { color: #60a5fa; }
 
-  .header-phone:hover {
-    color: #60a5fa;
-  }
-
-  /* ===== HERO WITH GATE IMAGE ===== */
+  /* ===== HERO ===== */
   .hero {
     position: relative;
     padding: 180px 0 120px;
@@ -99,23 +69,19 @@
 
   .hero-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: 
       linear-gradient(135deg, rgba(10, 31, 68, 0.92) 0%, rgba(30, 58, 110, 0.88) 50%, rgba(10, 31, 68, 0.90) 100%),
-      url('https://svgroup-nn.ru/image/cache/catalog/img-product/pd1-500x500.jpg') center/cover no-repeat;
+      url('секционные.png') center/cover no-repeat;
     z-index: -2;
   }
 
   .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    right: -20%;
-    width: 600px;
-    height: 600px;
+    top: 0; right: -20%;
+    width: 600px; height: 600px;
     background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     z-index: -1;
@@ -124,20 +90,14 @@
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 400px;
-    height: 400px;
+    bottom: -30%; left: -10%;
+    width: 400px; height: 400px;
     background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     z-index: -1;
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
 
   .hero-badge {
     display: inline-block;
@@ -162,9 +122,7 @@
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  .hero h1 span {
-    color: #60a5fa;
-  }
+  .hero h1 span { color: #60a5fa; }
 
   .hero-subtitle {
     font-size: clamp(17px, 2vw, 20px);
@@ -196,19 +154,11 @@
     box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
   }
 
-  .btn:active {
-    transform: translateY(0);
-  }
-
-  .btn-large {
-    padding: 18px 42px;
-    font-size: 17px;
-  }
+  .btn:active { transform: translateY(0); }
+  .btn-large { padding: 18px 42px; font-size: 17px; }
 
   /* ===== SECTIONS ===== */
-  section {
-    padding: 90px 0;
-  }
+  section { padding: 90px 0; }
 
   .section-title {
     font-size: clamp(28px, 4vw, 40px);
@@ -229,14 +179,12 @@
     margin-right: auto;
   }
 
-  /* ===== ADVANTAGES ===== */
-  .advantages {
-    background: var(--gray);
-  }
+  /* ===== ADVANTAGES (6 CARDS) ===== */
+  .advantages { background: var(--gray); }
 
   .advantages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
@@ -256,8 +204,7 @@
   }
 
   .advantage-icon {
-    width: 56px;
-    height: 56px;
+    width: 56px; height: 56px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     border-radius: 12px;
     display: flex;
@@ -267,8 +214,7 @@
   }
 
   .advantage-icon svg {
-    width: 28px;
-    height: 28px;
+    width: 28px; height: 28px;
     stroke: var(--white);
     fill: none;
     stroke-width: 2;
@@ -312,15 +258,12 @@
   }
 
   .gallery-item img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
   }
 
-  .gallery-item:hover img {
-    transform: scale(1.1);
-  }
+  .gallery-item:hover img { transform: scale(1.1); }
 
   .gallery-overlay {
     position: absolute;
@@ -333,41 +276,27 @@
     padding: 16px;
   }
 
-  .gallery-item:hover .gallery-overlay {
-    opacity: 1;
-  }
-
-  .gallery-overlay span {
-    color: var(--white);
-    font-size: 13px;
-    font-weight: 500;
-  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: var(--white); font-size: 13px; font-weight: 500; }
 
   /* ===== LIGHTBOX ===== */
   .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.95);
     z-index: 2000;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
-  .lightbox.active {
-    display: flex;
-    opacity: 1;
-  }
+  .lightbox.active { display: flex; opacity: 1; }
 
   .lightbox-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+    top: 20px; right: 20px;
+    width: 50px; height: 50px;
     background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 50%;
@@ -388,8 +317,7 @@
 
   .lightbox-content {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -408,8 +336,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+    width: 60px; height: 60px;
     background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 50%;
@@ -427,13 +354,8 @@
     transform: translateY(-50%) scale(1.1);
   }
 
-  .lightbox-prev {
-    left: 20px;
-  }
-
-  .lightbox-next {
-    right: 20px;
-  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
 
   .lightbox-counter {
     position: absolute;
@@ -464,9 +386,7 @@
   }
 
   /* ===== TESTIMONIALS ===== */
-  .testimonials {
-    background: var(--gray);
-  }
+  .testimonials { background: var(--gray); }
 
   .testimonials-grid {
     display: grid;
@@ -488,12 +408,7 @@
     box-shadow: var(--shadow-lg);
   }
 
-  .testimonial-stars {
-    color: #fbbf24;
-    font-size: 18px;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-  }
+  .testimonial-stars { color: #fbbf24; font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
 
   .testimonial-text {
     font-size: 15px;
@@ -503,15 +418,10 @@
     font-style: italic;
   }
 
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
 
   .testimonial-avatar {
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: var(--white);
@@ -522,22 +432,11 @@
     font-size: 18px;
   }
 
-  .testimonial-name {
-    font-weight: 700;
-    color: var(--primary);
-    font-size: 15px;
-  }
-
-  .testimonial-role {
-    color: var(--gray-dark);
-    font-size: 13px;
-  }
+  .testimonial-name { font-weight: 700; color: var(--primary); font-size: 15px; }
+  .testimonial-role { color: var(--gray-dark); font-size: 13px; }
 
   /* ===== FAQ ===== */
-  .faq-list {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+  .faq-list { max-width: 800px; margin: 0 auto; }
 
   .faq-item {
     background: var(--white);
@@ -548,9 +447,7 @@
     transition: var(--transition);
   }
 
-  .faq-item:hover {
-    border-color: var(--accent);
-  }
+  .faq-item:hover { border-color: var(--accent); }
 
   .faq-question {
     padding: 20px 24px;
@@ -565,8 +462,7 @@
   }
 
   .faq-icon {
-    width: 24px;
-    height: 24px;
+    width: 24px; height: 24px;
     position: relative;
     transition: transform 0.3s ease;
   }
@@ -579,23 +475,9 @@
     transition: transform 0.3s ease;
   }
 
-  .faq-icon::before {
-    width: 14px;
-    height: 2px;
-    top: 11px;
-    left: 5px;
-  }
-
-  .faq-icon::after {
-    width: 2px;
-    height: 14px;
-    top: 5px;
-    left: 11px;
-  }
-
-  .faq-item.active .faq-icon::after {
-    transform: rotate(90deg);
-  }
+  .faq-icon::before { width: 14px; height: 2px; top: 11px; left: 5px; }
+  .faq-icon::after { width: 2px; height: 14px; top: 5px; left: 11px; }
+  .faq-item.active .faq-icon::after { transform: rotate(90deg); }
 
   .faq-answer {
     max-height: 0;
@@ -607,10 +489,7 @@
     font-size: 15px;
   }
 
-  .faq-item.active .faq-answer {
-    max-height: 300px;
-    padding: 0 24px 20px;
-  }
+  .faq-item.active .faq-answer { max-height: 300px; padding: 0 24px 20px; }
 
   /* ===== CONTACT FORM ===== */
   .contact {
@@ -623,21 +502,14 @@
   .contact::before {
     content: '';
     position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
     background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
     border-radius: 50%;
   }
 
-  .contact .section-title {
-    color: var(--white);
-  }
-
-  .contact .section-subtitle {
-    color: rgba(255, 255, 255, 0.8);
-  }
+  .contact .section-title { color: var(--white); }
+  .contact .section-subtitle { color: rgba(255, 255, 255, 0.8); }
 
   .form-wrapper {
     max-width: 600px;
@@ -650,9 +522,7 @@
     z-index: 2;
   }
 
-  .form-group {
-    margin-bottom: 20px;
-  }
+  .form-group { margin-bottom: 20px; }
 
   .form-label {
     display: block;
@@ -662,9 +532,7 @@
     font-size: 14px;
   }
 
-  .form-label .required {
-    color: #ef4444;
-  }
+  .form-label .required { color: #ef4444; }
 
   .form-input {
     width: 100%;
@@ -684,9 +552,7 @@
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   }
 
-  .form-input.error {
-    border-color: #ef4444;
-  }
+  .form-input.error { border-color: #ef4444; }
 
   .form-error {
     color: #ef4444;
@@ -695,9 +561,7 @@
     display: none;
   }
 
-  .form-error.show {
-    display: block;
-  }
+  .form-error.show { display: block; }
 
   .messenger-group {
     display: grid;
@@ -705,14 +569,8 @@
     gap: 10px;
   }
 
-  .messenger-option {
-    position: relative;
-  }
-
-  .messenger-option input {
-    position: absolute;
-    opacity: 0;
-  }
+  .messenger-option { position: relative; }
+  .messenger-option input { position: absolute; opacity: 0; }
 
   .messenger-label {
     display: flex;
@@ -729,9 +587,7 @@
     color: var(--text);
   }
 
-  .messenger-label:hover {
-    border-color: var(--accent);
-  }
+  .messenger-label:hover { border-color: var(--accent); }
 
   .messenger-option input:checked + .messenger-label {
     background: var(--primary);
@@ -765,13 +621,10 @@
     padding: 40px 20px;
   }
 
-  .form-success.show {
-    display: block;
-  }
+  .form-success.show { display: block; }
 
   .form-success-icon {
-    width: 70px;
-    height: 70px;
+    width: 70px; height: 70px;
     background: #10b981;
     border-radius: 50%;
     display: flex;
@@ -782,15 +635,8 @@
     color: var(--white);
   }
 
-  .form-success h3 {
-    color: var(--primary);
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-
-  .form-success p {
-    color: var(--gray-dark);
-  }
+  .form-success h3 { color: var(--primary); font-size: 22px; margin-bottom: 10px; }
+  .form-success p { color: var(--gray-dark); }
 
   /* ===== FOOTER ===== */
   footer {
@@ -806,12 +652,7 @@
     margin-bottom: 40px;
   }
 
-  .footer-col h4 {
-    color: var(--white);
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
-  }
+  .footer-col h4 { color: var(--white); font-size: 16px; font-weight: 700; margin-bottom: 16px; }
 
   .footer-col p,
   .footer-col a {
@@ -823,9 +664,7 @@
     transition: var(--transition);
   }
 
-  .footer-col a:hover {
-    color: #60a5fa;
-  }
+  .footer-col a:hover { color: #60a5fa; }
 
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -836,93 +675,32 @@
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
-    .gallery-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .lightbox-nav {
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-    }
-    
-    .lightbox-prev {
-      left: 10px;
-    }
-    
-    .lightbox-next {
-      right: 10px;
-    }
+    .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .lightbox-nav { width: 50px; height: 50px; font-size: 24px; }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
   }
 
   @media (max-width: 640px) {
-    section {
-      padding: 60px 0;
-    }
-
-    .hero {
-      padding: 140px 0 80px;
-      min-height: 600px;
-    }
-
-    .container {
-      padding: 0 16px;
-    }
-
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .form-wrapper {
-      padding: 28px 20px;
-    }
-
-    .messenger-group {
-      grid-template-columns: 1fr;
-    }
-
-    .header-phone {
-      font-size: 13px;
-    }
-
-    .logo {
-      font-size: 20px;
-    }
-    
-    .lightbox-content {
-      padding: 60px 20px;
-    }
-    
-    .lightbox-caption {
-      bottom: 70px;
-      font-size: 13px;
-      padding: 8px 16px;
-      max-width: 90%;
-    }
+    section { padding: 60px 0; }
+    .hero { padding: 140px 0 80px; min-height: 600px; }
+    .container { padding: 0 16px; }
+    .advantages-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .form-wrapper { padding: 28px 20px; }
+    .messenger-group { grid-template-columns: 1fr; }
+    .header-phone { font-size: 13px; }
+    .logo { font-size: 20px; }
+    .lightbox-content { padding: 60px 20px; }
+    .lightbox-caption { bottom: 70px; font-size: 13px; padding: 8px 16px; max-width: 90%; }
   }
 
   @media (max-width: 360px) {
-    .hero h1 {
-      font-size: 28px;
-    }
-
-    .btn-large {
-      padding: 16px 28px;
-      font-size: 15px;
-    }
-
-    .advantages-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .lightbox-nav {
-      display: none;
-    }
+    .hero h1 { font-size: 28px; }
+    .btn-large { padding: 16px 28px; font-size: 15px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .lightbox-nav { display: none; }
   }
 </style>
 </head>
@@ -935,7 +713,7 @@
   </div>
 </header>
 
-<!-- HERO WITH GATE BACKGROUND -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="container">
@@ -948,11 +726,11 @@
   </div>
 </section>
 
-<!-- ADVANTAGES -->
+<!-- ADVANTAGES - 6 CARDS -->
 <section class="advantages">
   <div class="container">
     <h2 class="section-title">Почему выбирают нас</h2>
-    <p class="section-subtitle">5 причин доверить ворота именно нам</p>
+    <p class="section-subtitle">6 причин доверить ворота именно нам</p>
     <div class="advantages-grid">
       <div class="advantage-card">
         <div class="advantage-icon">
@@ -979,8 +757,8 @@
         <div class="advantage-icon">
           <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
-        <h3>Сертификаты</h3>
-        <p>Вся продукция сертифицирована и соответствует ГОСТ</p>
+        <h3>Сертификаты ГОСТ</h3>
+        <p>Вся продукция сертифицирована и соответствует стандартам</p>
       </div>
       <div class="advantage-card">
         <div class="advantage-icon">
@@ -988,6 +766,13 @@
         </div>
         <h3>Консультация 24/7</h3>
         <p>Бесплатная консультация и расчёт стоимости в любое время</p>
+      </div>
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>Рассрочка 0%</h3>
+        <p>Удобная рассрочка без переплат на срок до 12 месяцев</p>
       </div>
     </div>
   </div>
@@ -1000,43 +785,43 @@
     <p class="section-subtitle">Более 1500 установленных ворот по всей России</p>
     <div class="gallery-grid">
       <div class="gallery-item" data-index="0">
-        <img src="https://doorhan.ru/upload/iblock/4f5/4f5e8b5c5d5e5f5e5f5e5f5e5f5e5f5e.jpg" alt="Секционные ворота RSD01" loading="lazy">
-        <div class="gallery-overlay"><span>Секционные ворота RSD01</span></div>
+        <img src="секционные.png" alt="Секционные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Секционные ворота</span></div>
       </div>
       <div class="gallery-item" data-index="1">
-        <img src="https://doorhan.ru/upload/iblock/a1b/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.jpg" alt="Ворота для коттеджа" loading="lazy">
-        <div class="gallery-overlay"><span>Ворота для коттеджа</span></div>
+        <img src="коттеджные.jpg" alt="Коттеджные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Коттеджные ворота</span></div>
       </div>
       <div class="gallery-item" data-index="2">
-        <img src="https://doorhan.ru/upload/iblock/c2d/c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7.jpg" alt="Промышленные ворота" loading="lazy">
+        <img src="промышленные.jpg" alt="Промышленные ворота" loading="lazy">
         <div class="gallery-overlay"><span>Промышленные ворота</span></div>
       </div>
       <div class="gallery-item" data-index="3">
-        <img src="https://doorhan.ru/upload/iblock/d3e/d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8.jpg" alt="Складские ворота" loading="lazy">
+        <img src="складские.jpg" alt="Складские ворота" loading="lazy">
         <div class="gallery-overlay"><span>Складские ворота</span></div>
       </div>
       <div class="gallery-item" data-index="4">
-        <img src="https://doorhan.ru/upload/iblock/e4f/e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9.jpg" alt="Ворота с автоматикой" loading="lazy">
+        <img src="ворота с автоматикой.jpg" alt="Ворота с автоматикой" loading="lazy">
         <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
       </div>
       <div class="gallery-item" data-index="5">
-        <img src="https://doorhan.ru/upload/iblock/f5a/f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0.jpg" alt="Гараж премиум" loading="lazy">
+        <img src="современный дом.jpg" alt="Премиум серия" loading="lazy">
         <div class="gallery-overlay"><span>Премиум серия</span></div>
       </div>
       <div class="gallery-item" data-index="6">
-        <img src="https://doorhan.ru/upload/iblock/a6b/a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1.jpg" alt="Современный дом" loading="lazy">
-        <div class="gallery-overlay"><span>Для современного дома</span></div>
+        <img src="современный дом.jpg" alt="Современный дом" loading="lazy">
+        <div class="gallery-overlay"><span>Современный дом</span></div>
       </div>
       <div class="gallery-item" data-index="7">
-        <img src="https://doorhan.ru/upload/iblock/b7c/b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2.jpg" alt="Автоматические ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Автоматические системы</span></div>
+        <img src="автоматические.jpg" alt="Автоматические ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Автоматические ворота</span></div>
       </div>
       <div class="gallery-item" data-index="8">
-        <img src="https://doorhan.ru/upload/iblock/c8d/c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3.jpg" alt="Ворота для бизнеса" loading="lazy">
-        <div class="gallery-overlay"><span>Коммерческие объекты</span></div>
+        <img src="для бизнеса.jpg" alt="Ворота для бизнеса" loading="lazy">
+        <div class="gallery-overlay"><span>Для бизнеса</span></div>
       </div>
       <div class="gallery-item" data-index="9">
-        <img src="https://doorhan.ru/upload/iblock/d9e/d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4.jpg" alt="Установка ворот" loading="lazy">
+        <img src="установка.jpg" alt="Установка ворот" loading="lazy">
         <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
       </div>
     </div>
@@ -1162,37 +947,25 @@
           <div class="form-error" data-error="phone">Введите корректный номер телефона</div>
         </div>
 
-        <div class="form-group">
+               <div class="form-group">
           <label class="form-label">Удобный мессенджер</label>
           <div class="messenger-group">
             <div class="messenger-option">
-              <input type="radio" name="messenger" id="msg-whatsapp" value="whatsapp">
-              <label for="msg-whatsapp" class="messenger-label">WhatsApp</label>
+              <input type="radio" name="messenger" id="msg-vk" value="vk">
+              <label for="msg-vk" class="messenger-label">ВКонтакте</label>
             </div>
             <div class="messenger-option">
-              <input type="radio" name="messenger" id="msg-telegram" value="telegram">
-              <label for="msg-telegram" class="messenger-label">Telegram</label>
+              <input type="radio" name="messenger" id="msg-max" value="max">
+              <label for="msg-max" class="messenger-label">Макс</label>
             </div>
             <div class="messenger-option">
-              <input type="radio" name="messenger" id="msg-viber" value="viber">
-              <label for="msg-viber" class="messenger-label">Viber</label>
+              <input type="radio" name="messenger" id="msg-tg" value="telegram">
+              <label for="msg-tg" class="messenger-label">Телеграм</label>
             </div>
           </div>
         </div>
-
-        <button type="submit" class="form-submit">Отправить заявку</button>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">✓</div>
-        <h3>Заявка отправлена!</h3>
-        <p>Мы свяжемся с вами в течение 30 минут</p>
-      </div>
-    </div>
-  </div>
 </section>
-
-<!-- FOOTER -->
+<!-- FOOTER (без адреса) -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -1204,7 +977,6 @@
         <h4>Контакты</h4>
         <a href="tel:+78001234567">+7 (800) 123-45-67</a>
         <a href="mailto:info@doorhan.ru">info@doorhan.ru</a>
-        <p>г. Тюмень, ул. Промышленная, 12</p>
       </div>
       <div class="footer-col">
         <h4>Режим работы</h4>
@@ -1263,49 +1035,24 @@
 
   function changeImage(direction) {
     currentImageIndex += direction;
-    
-    if (currentImageIndex < 0) {
-      currentImageIndex = galleryItems.length - 1;
-    } else if (currentImageIndex >= galleryItems.length) {
-      currentImageIndex = 0;
-    }
-    
+    if (currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
+    else if (currentImageIndex >= galleryItems.length) currentImageIndex = 0;
     openLightbox(currentImageIndex);
   }
 
-  // Закрытие по клику вне изображения
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
       closeLightbox();
     }
   });
 
-  // Закрытие по Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
-    if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
-      changeImage(-1);
-    }
-    if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
-      changeImage(1);
-    }
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) changeImage(-1);
+    if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) changeImage(1);
   });
 
-  // Предзагрузка соседних изображений
-  function preloadNeighborImages() {
-    const nextIndex = (currentImageIndex + 1) % galleryItems.length;
-    const prevIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
-    
-    const nextImg = new Image();
-    const prevImg = new Image();
-    
-    nextImg.src = galleryItems[nextIndex].querySelector('img').src;
-    prevImg.src = galleryItems[prevIndex].querySelector('img').src;
-  }
-
-  // ===== FAQ аккордеон =====
+  // ===== FAQ =====
   document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -1315,7 +1062,7 @@
     });
   });
 
-  // ===== Валидация формы =====
+  // ===== FORM VALIDATION =====
   const form = document.getElementById('leadForm');
   const successBlock = document.getElementById('formSuccess');
 
@@ -1338,33 +1085,18 @@
     return digits.length >= 10 && digits.length <= 11;
   }
 
-  // Живая валидация
   form.querySelectorAll('.form-input').forEach(input => {
-    input.addEventListener('input', () => {
-      clearError(input.name);
-    });
+    input.addEventListener('input', () => clearError(input.name));
   });
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let valid = true;
-
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
 
-    if (name.length < 2) {
-      showError('name');
-      valid = false;
-    } else {
-      clearError('name');
-    }
-
-    if (!validatePhone(phone)) {
-      showError('phone');
-      valid = false;
-    } else {
-      clearError('phone');
-    }
+    if (name.length < 2) { showError('name'); valid = false; } else clearError('name');
+    if (!validatePhone(phone)) { showError('phone'); valid = false; } else clearError('phone');
 
     if (valid) {
       form.style.display = 'none';
@@ -1377,7 +1109,6 @@
     }
   });
 
-  // Маска телефона
   form.phone.addEventListener('input', (e) => {
     let v = e.target.value.replace(/\D/g, '');
     if (v.startsWith('8')) v = '7' + v.slice(1);
