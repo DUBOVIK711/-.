@@ -783,48 +783,52 @@
   <div class="container">
     <h2 class="section-title">Наши работы</h2>
     <p class="section-subtitle">Более 1500 установленных ворот по всей России</p>
-    <div class="gallery-grid">
-      <div class="gallery-item" data-index="0">
-        <img src="секционные.png" alt="Секционные ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Секционные ворота</span></div>
-      </div>
-      <div class="gallery-item" data-index="1">
-        <img src="коттеджные.jpg" alt="Коттеджные ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Коттеджные ворота</span></div>
-      </div>
-      <div class="gallery-item" data-index="2">
-        <img src="промышленные.jpg" alt="Промышленные ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Промышленные ворота</span></div>
-      </div>
-      <div class="gallery-item" data-index="3">
-        <img src="складские.jpg" alt="Складские ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Складские ворота</span></div>
-      </div>
-      <div class="gallery-item" data-index="4">
-        <img src="ворота с автоматикой.jpg" alt="Ворота с автоматикой" loading="lazy">
-        <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
-      </div>
-      <div class="gallery-item" data-index="5">
-        <img src="современный дом.jpg" alt="Премиум серия" loading="lazy">
-        <div class="gallery-overlay"><span>Премиум серия</span></div>
-      </div>
-      <div class="gallery-item" data-index="6">
-        <img src="современный дом.jpg" alt="Современный дом" loading="lazy">
-        <div class="gallery-overlay"><span>Современный дом</span></div>
-      </div>
-      <div class="gallery-item" data-index="7">
-        <img src="автоматические.jpg" alt="Автоматические ворота" loading="lazy">
-        <div class="gallery-overlay"><span>Автоматические ворота</span></div>
-      </div>
-      <div class="gallery-item" data-index="8">
-        <img src="для бизнеса.jpg" alt="Ворота для бизнеса" loading="lazy">
-        <div class="gallery-overlay"><span>Для бизнеса</span></div>
-      </div>
-      <div class="gallery-item" data-index="9">
-        <img src="установка.jpg" alt="Установка ворот" loading="lazy">
-        <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
-      </div>
-    </div>
+   <!-- HERO BACKGROUND -->
+<div class="hero-bg" style="background-image: linear-gradient(135deg, rgba(10, 31, 68, 0.92) 0%, rgba(30, 58, 110, 0.88) 50%, rgba(10, 31, 68, 0.90) 100%), url('sectional-doors.png'); background-size: cover; background-position: center;"></div>
+
+<!-- GALLERY -->
+<div class="gallery-grid">
+  <div class="gallery-item" data-index="0">
+    <img src="sectional-doors.png" alt="Секционные ворота" loading="lazy">
+    <div class="gallery-overlay"><span>Секционные ворота</span></div>
+  </div>
+  <div class="gallery-item" data-index="1">
+    <img src="cottage-doors.jpg" alt="Коттеджные ворота" loading="lazy">
+    <div class="gallery-overlay"><span>Коттеджные ворота</span></div>
+  </div>
+  <div class="gallery-item" data-index="2">
+    <img src="industrial-doors.jpg" alt="Промышленные ворота" loading="lazy">
+    <div class="gallery-overlay"><span>Промышленные ворота</span></div>
+  </div>
+  <div class="gallery-item" data-index="3">
+    <img src="warehouse-doors.jpg" alt="Складские ворота" loading="lazy">
+    <div class="gallery-overlay"><span>Складские ворота</span></div>
+  </div>
+  <div class="gallery-item" data-index="4">
+    <img src="automatic-doors.jpg" alt="Ворота с автоматикой" loading="lazy">
+    <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
+  </div>
+  <div class="gallery-item" data-index="5">
+    <img src="modern-house.jpg" alt="Премиум серия" loading="lazy">
+    <div class="gallery-overlay"><span>Премиум серия</span></div>
+  </div>
+  <div class="gallery-item" data-index="6">
+    <img src="modern-house.jpg" alt="Современный дом" loading="lazy">
+    <div class="gallery-overlay"><span>Современный дом</span></div>
+  </div>
+  <div class="gallery-item" data-index="7">
+    <img src="auto-gates.jpg" alt="Автоматические ворота" loading="lazy">
+    <div class="gallery-overlay"><span>Автоматические ворота</span></div>
+  </div>
+  <div class="gallery-item" data-index="8">
+    <img src="business-doors.jpg" alt="Ворота для бизнеса" loading="lazy">
+    <div class="gallery-overlay"><span>Для бизнеса</span></div>
+  </div>
+  <div class="gallery-item" data-index="9">
+    <img src="installation.jpg" alt="Установка ворот" loading="lazy">
+    <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
+  </div>
+</div>
   </div>
 </section>
 
@@ -941,12 +945,6 @@
           <div class="form-error" data-error="name">Введите ваше имя (минимум 2 символа)</div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Телефон <span class="required">*</span></label>
-          <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__">
-          <div class="form-error" data-error="phone">Введите корректный номер телефона</div>
-        </div>
-
                <div class="form-group">
           <label class="form-label">Удобный мессенджер</label>
           <div class="messenger-group">
@@ -964,7 +962,19 @@
             </div>
           </div>
         </div>
+
+        <button type="submit" class="form-submit">Отправить заявку</button>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <h3>Заявка отправлена!</h3>
+        <p>Мы свяжемся с вами в течение 30 минут</p>
+      </div>
+    </div>
+  </div>
 </section>
+
 <!-- FOOTER (без адреса) -->
 <footer>
   <div class="container">
