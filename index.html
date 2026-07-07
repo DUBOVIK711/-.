@@ -34,7 +34,6 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-  /* ===== HEADER ===== */
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -57,7 +56,6 @@
   }
   .header-phone:hover { color: #60a5fa; }
 
-  /* ===== HERO ===== */
   .hero {
     position: relative;
     padding: 180px 0 120px;
@@ -73,7 +71,7 @@
     width: 100%; height: 100%;
     background: 
       linear-gradient(135deg, rgba(10, 31, 68, 0.92) 0%, rgba(30, 58, 110, 0.88) 50%, rgba(10, 31, 68, 0.90) 100%),
-      url('секционные.png') center/cover no-repeat;
+      url('sectional-doors.png') center/cover no-repeat;
     z-index: -2;
   }
 
@@ -157,7 +155,6 @@
   .btn:active { transform: translateY(0); }
   .btn-large { padding: 18px 42px; font-size: 17px; }
 
-  /* ===== SECTIONS ===== */
   section { padding: 90px 0; }
 
   .section-title {
@@ -179,7 +176,6 @@
     margin-right: auto;
   }
 
-  /* ===== ADVANTAGES (6 CARDS) ===== */
   .advantages { background: var(--gray); }
 
   .advantages-grid {
@@ -235,7 +231,6 @@
     line-height: 1.6;
   }
 
-  /* ===== GALLERY ===== */
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -279,7 +274,6 @@
   .gallery-item:hover .gallery-overlay { opacity: 1; }
   .gallery-overlay span { color: var(--white); font-size: 13px; font-weight: 500; }
 
-  /* ===== LIGHTBOX ===== */
   .lightbox {
     display: none;
     position: fixed;
@@ -385,7 +379,6 @@
     text-align: center;
   }
 
-  /* ===== TESTIMONIALS ===== */
   .testimonials { background: var(--gray); }
 
   .testimonials-grid {
@@ -435,7 +428,6 @@
   .testimonial-name { font-weight: 700; color: var(--primary); font-size: 15px; }
   .testimonial-role { color: var(--gray-dark); font-size: 13px; }
 
-  /* ===== FAQ ===== */
   .faq-list { max-width: 800px; margin: 0 auto; }
 
   .faq-item {
@@ -491,7 +483,6 @@
 
   .faq-item.active .faq-answer { max-height: 300px; padding: 0 24px 20px; }
 
-  /* ===== CONTACT FORM ===== */
   .contact {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: var(--white);
@@ -638,7 +629,191 @@
   .form-success h3 { color: var(--primary); font-size: 22px; margin-bottom: 10px; }
   .form-success p { color: var(--gray-dark); }
 
-  /* ===== FOOTER ===== */
+  /* ===== ПОДПИСКА ===== */
+  .subscribe {
+    background: linear-gradient(135deg, #0a1f44 0%, #1e3a6e 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subscribe::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -20%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .subscribe::after {
+    content: '';
+    position: absolute;
+    bottom: -40%; right: -15%;
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .subscribe .section-title { color: var(--white); }
+  .subscribe .section-subtitle { color: rgba(255, 255, 255, 0.85); }
+
+  .subscribe-wrapper {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .subscribe-input-wrap { position: relative; }
+
+  .subscribe-input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: var(--transition);
+  }
+
+  .subscribe-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+  .subscribe-input:focus {
+    outline: none;
+    border-color: #60a5fa;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  }
+
+  .subscribe-input.error {
+    border-color: #f87171;
+    background: rgba(248, 113, 113, 0.1);
+  }
+
+  .subscribe-error {
+    color: #fca5a5;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+    padding-left: 4px;
+  }
+
+  .subscribe-error.show { display: block; }
+
+  .subscribe-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+  }
+
+  .subscribe-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
+  }
+
+  .subscribe-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .loader {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .loader.show { display: inline-block; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .subscribe-success {
+    display: none;
+    text-align: center;
+    padding: 30px 10px;
+    animation: fadeInUp 0.5s ease;
+  }
+
+  .subscribe-success.show { display: block; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .subscribe-success-icon {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 42px;
+    color: var(--white);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+    animation: successPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes successPop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  .subscribe-success h3 {
+    color: var(--white);
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .subscribe-success p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .subscribe-note {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
   footer {
     background: #061229;
     color: rgba(255, 255, 255, 0.7);
@@ -673,7 +848,6 @@
     font-size: 13px;
   }
 
-  /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     .advantages-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(3, 1fr); }
@@ -688,7 +862,7 @@
     .container { padding: 0 16px; }
     .advantages-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .form-wrapper { padding: 28px 20px; }
+    .form-wrapper, .subscribe-wrapper { padding: 28px 20px; }
     .messenger-group { grid-template-columns: 1fr; }
     .header-phone { font-size: 13px; }
     .logo { font-size: 20px; }
@@ -713,7 +887,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="container">
@@ -726,7 +899,6 @@
   </div>
 </section>
 
-<!-- ADVANTAGES - 6 CARDS -->
 <section class="advantages">
   <div class="container">
     <h2 class="section-title">Почему выбирают нас</h2>
@@ -778,61 +950,55 @@
   </div>
 </section>
 
-<!-- GALLERY -->
 <section>
   <div class="container">
     <h2 class="section-title">Наши работы</h2>
     <p class="section-subtitle">Более 1500 установленных ворот по всей России</p>
-   <!-- HERO BACKGROUND -->
-<div class="hero-bg" style="background-image: linear-gradient(135deg, rgba(10, 31, 68, 0.92) 0%, rgba(30, 58, 110, 0.88) 50%, rgba(10, 31, 68, 0.90) 100%), url('sectional-doors.png'); background-size: cover; background-position: center;"></div>
-
-<!-- GALLERY -->
-<div class="gallery-grid">
-  <div class="gallery-item" data-index="0">
-    <img src="sectional-doors.png" alt="Секционные ворота" loading="lazy">
-    <div class="gallery-overlay"><span>Секционные ворота</span></div>
-  </div>
-  <div class="gallery-item" data-index="1">
-    <img src="cottage-doors.jpg" alt="Коттеджные ворота" loading="lazy">
-    <div class="gallery-overlay"><span>Коттеджные ворота</span></div>
-  </div>
-  <div class="gallery-item" data-index="2">
-    <img src="industrial-doors.jpg" alt="Промышленные ворота" loading="lazy">
-    <div class="gallery-overlay"><span>Промышленные ворота</span></div>
-  </div>
-  <div class="gallery-item" data-index="3">
-    <img src="warehouse-doors.jpg" alt="Складские ворота" loading="lazy">
-    <div class="gallery-overlay"><span>Складские ворота</span></div>
-  </div>
-  <div class="gallery-item" data-index="4">
-    <img src="automatic-doors.jpg" alt="Ворота с автоматикой" loading="lazy">
-    <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
-  </div>
-  <div class="gallery-item" data-index="5">
-    <img src="modern-house.jpg" alt="Премиум серия" loading="lazy">
-    <div class="gallery-overlay"><span>Премиум серия</span></div>
-  </div>
-  <div class="gallery-item" data-index="6">
-    <img src="modern-house.jpg" alt="Современный дом" loading="lazy">
-    <div class="gallery-overlay"><span>Современный дом</span></div>
-  </div>
-  <div class="gallery-item" data-index="7">
-    <img src="auto-gates.jpg" alt="Автоматические ворота" loading="lazy">
-    <div class="gallery-overlay"><span>Автоматические ворота</span></div>
-  </div>
-  <div class="gallery-item" data-index="8">
-    <img src="business-doors.jpg" alt="Ворота для бизнеса" loading="lazy">
-    <div class="gallery-overlay"><span>Для бизнеса</span></div>
-  </div>
-  <div class="gallery-item" data-index="9">
-    <img src="installation.jpg" alt="Установка ворот" loading="lazy">
-    <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
-  </div>
-</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-index="0">
+        <img src="sectional-doors.png" alt="Секционные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Секционные ворота</span></div>
+      </div>
+      <div class="gallery-item" data-index="1">
+        <img src="cottage-doors.jpg" alt="Коттеджные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Коттеджные ворота</span></div>
+      </div>
+      <div class="gallery-item" data-index="2">
+        <img src="industrial-doors.jpg" alt="Промышленные ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Промышленные ворота</span></div>
+      </div>
+      <div class="gallery-item" data-index="3">
+        <img src="warehouse-doors.jpg" alt="Складские ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Складские ворота</span></div>
+      </div>
+      <div class="gallery-item" data-index="4">
+        <img src="automatic-doors.jpg" alt="Ворота с автоматикой" loading="lazy">
+        <div class="gallery-overlay"><span>Ворота с автоматикой</span></div>
+      </div>
+      <div class="gallery-item" data-index="5">
+        <img src="modern-house.jpg" alt="Премиум серия" loading="lazy">
+        <div class="gallery-overlay"><span>Премиум серия</span></div>
+      </div>
+      <div class="gallery-item" data-index="6">
+        <img src="modern-house.jpg" alt="Современный дом" loading="lazy">
+        <div class="gallery-overlay"><span>Современный дом</span></div>
+      </div>
+      <div class="gallery-item" data-index="7">
+        <img src="auto-gates.jpg" alt="Автоматические ворота" loading="lazy">
+        <div class="gallery-overlay"><span>Автоматические ворота</span></div>
+      </div>
+      <div class="gallery-item" data-index="8">
+        <img src="business-doors.jpg" alt="Ворота для бизнеса" loading="lazy">
+        <div class="gallery-overlay"><span>Для бизнеса</span></div>
+      </div>
+      <div class="gallery-item" data-index="9">
+        <img src="installation.jpg" alt="Установка ворот" loading="lazy">
+        <div class="gallery-overlay"><span>Монтаж под ключ</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
   <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button>
@@ -844,7 +1010,6 @@
   </div>
 </div>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
     <h2 class="section-title">Отзывы клиентов</h2>
@@ -887,7 +1052,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <section>
   <div class="container">
     <h2 class="section-title">Частые вопросы</h2>
@@ -932,7 +1096,6 @@
   </div>
 </section>
 
-<!-- CONTACT FORM -->
 <section class="contact" id="contact">
   <div class="container">
     <h2 class="section-title">Оставьте заявку</h2>
@@ -945,7 +1108,13 @@
           <div class="form-error" data-error="name">Введите ваше имя (минимум 2 символа)</div>
         </div>
 
-               <div class="form-group">
+        <div class="form-group">
+          <label class="form-label">Телефон <span class="required">*</span></label>
+          <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__">
+          <div class="form-error" data-error="phone">Введите корректный номер телефона</div>
+        </div>
+
+        <div class="form-group">
           <label class="form-label">Удобный мессенджер</label>
           <div class="messenger-group">
             <div class="messenger-option">
@@ -975,7 +1144,56 @@
   </div>
 </section>
 
-<!-- FOOTER (без адреса) -->
+<section class="subscribe" id="subscribe">
+  <div class="container">
+    <h2 class="section-title">📬 Подпишитесь на новости</h2>
+    <p class="section-subtitle">Получайте акции, скидки и полезные советы по воротам первыми</p>
+
+    <div class="subscribe-wrapper">
+      <form class="subscribe-form" id="subscribeForm" novalidate>
+        <div class="subscribe-input-wrap">
+          <input 
+            type="email" 
+            name="email" 
+            class="subscribe-input" 
+            id="subEmail"
+            placeholder="Ваш email *" 
+            required
+            autocomplete="email"
+          >
+          <div class="subscribe-error" id="subEmailError">Введите корректный email</div>
+        </div>
+
+        <div class="subscribe-input-wrap">
+          <input 
+            type="text" 
+            name="name" 
+            class="subscribe-input" 
+            id="subName"
+            placeholder="Ваше имя (необязательно)"
+            autocomplete="given-name"
+          >
+        </div>
+
+        <button type="submit" class="subscribe-btn" id="subBtn">
+          <span class="subscribe-btn-text">Подписаться</span>
+          <span class="loader" id="subLoader"></span>
+        </button>
+
+        <p class="subscribe-note">
+          Нажимая «Подписаться», вы соглашаетесь с обработкой персональных данных
+        </p>
+      </form>
+
+      <div class="subscribe-success" id="subSuccess">
+        <div class="subscribe-success-icon">✓</div>
+        <h3>Спасибо за подписку!</h3>
+        <p>Мы будем присылать вам самые интересные новости и специальные предложения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -1009,7 +1227,122 @@
 </footer>
 
 <script>
-  // ===== LIGHTBOX =====
+  // =========================================================
+  // ⚙️ SUPABASE КОНФИГУРАЦИЯ
+  // =========================================================
+  const SUPABASE_URL = 'https://dcqhkofltiqyngcvvtlm.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjcWhrb2ZsdGlxeW5nY3Z2dGxtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzMzIxMDUsImV4cCI6MjA5ODkwODEwNX0.OFXM2ZK8XNLil3PoKlRu0-djY6RPjsFDFl4oZ_ZDf3A';
+  const SUBSCRIBE_ENDPOINT = `${SUPABASE_URL}/rest/v1/subscriptions`;
+
+  // =========================================================
+  // 📬 ПОДПИСКА → SUPABASE (таблица subscriptions)
+  // =========================================================
+  const subscribeForm = document.getElementById('subscribeForm');
+  const subEmail = document.getElementById('subEmail');
+  const subName = document.getElementById('subName');
+  const subBtn = document.getElementById('subBtn');
+  const subBtnText = subBtn.querySelector('.subscribe-btn-text');
+  const subLoader = document.getElementById('subLoader');
+  const subSuccess = document.getElementById('subSuccess');
+  const subEmailError = document.getElementById('subEmailError');
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  function showSubError(msg) {
+    subEmailError.textContent = msg;
+    subEmailError.classList.add('show');
+    subEmail.classList.add('error');
+  }
+
+  function hideSubError() {
+    subEmailError.classList.remove('show');
+    subEmail.classList.remove('error');
+  }
+
+  subEmail.addEventListener('input', () => {
+    if (subEmail.classList.contains('error') && isValidEmail(subEmail.value.trim())) {
+      hideSubError();
+    }
+  });
+
+  subscribeForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideSubError();
+
+    const email = subEmail.value.trim();
+    const name = subName.value.trim();
+
+    if (!email) {
+      showSubError('Введите email');
+      subEmail.focus();
+      return;
+    }
+    if (!isValidEmail(email)) {
+      showSubError('Введите корректный email');
+      subEmail.focus();
+      return;
+    }
+
+    // Блокируем кнопку, показываем лоадер
+    subBtn.disabled = true;
+    subBtnText.textContent = 'Отправка...';
+    subLoader.classList.add('show');
+
+    try {
+      const payload = {
+        email: email,
+        name: name || null,
+        source: 'subscribe_form',
+        created_at: new Date().toISOString()
+      };
+
+      const response = await fetch(SUBSCRIBE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error('Supabase error:', errText);
+        throw new Error('Ошибка сервера. Попробуйте позже.');
+      }
+
+      // ✅ Успех
+      subscribeForm.style.display = 'none';
+      subSuccess.classList.add('show');
+
+      subEmail.value = '';
+      subName.value = '';
+
+      setTimeout(() => {
+        subSuccess.classList.remove('show');
+        subscribeForm.style.display = 'flex';
+        subBtnText.textContent = 'Подписаться';
+      }, 6000);
+
+    } catch (err) {
+      console.error('Subscribe error:', err);
+      showSubError(err.message || 'Произошла ошибка. Попробуйте ещё раз.');
+    } finally {
+      subBtn.disabled = false;
+      subLoader.classList.remove('show');
+      if (!subSuccess.classList.contains('show')) {
+        subBtnText.textContent = 'Подписаться';
+      }
+    }
+  });
+
+  // =========================================================
+  // 🖼️ LIGHTBOX
+  // =========================================================
   let currentImageIndex = 0;
   const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
@@ -1028,12 +1361,10 @@
     const item = galleryItems[index];
     const img = item.querySelector('img');
     const caption = item.querySelector('.gallery-overlay span').textContent;
-    
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightboxCaption.textContent = caption;
     lightboxCounter.textContent = `${index + 1} из ${galleryItems.length}`;
-    
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -1051,9 +1382,7 @@
   }
 
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-      closeLightbox();
-    }
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox();
   });
 
   document.addEventListener('keydown', (e) => {
@@ -1062,7 +1391,9 @@
     if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) changeImage(1);
   });
 
-  // ===== FAQ =====
+  // =========================================================
+  // ❓ FAQ
+  // =========================================================
   document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -1072,7 +1403,9 @@
     });
   });
 
-  // ===== FORM VALIDATION =====
+  // =========================================================
+  // 📝 ФОРМА ЗАЯВКИ
+  // =========================================================
   const form = document.getElementById('leadForm');
   const successBlock = document.getElementById('formSuccess');
 
